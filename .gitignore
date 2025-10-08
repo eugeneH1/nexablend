@@ -1,0 +1,74 @@
+# --- Node / Package Managers ---
+node_modules/
+**/node_modules/
+.pnpm-store/
+.pnpm/
+.pnp.*
+.npm/
+.yarn/*
+!.yarn/patches
+!.yarn/plugins
+!.yarn/releases
+!.yarn/sdks
+!.yarn/versions
+
+# --- Builds / Output ---
+.next/
+**/.next/
+out/
+dist/
+build/
+**/dist/
+**/build/
+.turbo/
+.vercel/
+.next-turbo-cache/
+
+# --- Environment Files ---
+.env
+.env.*
+!.env.example
+*.local
+
+# --- Logs ---
+npm-debug.log*
+yarn-error.log*
+pnpm-debug.log*
+*.log
+
+# --- OS / IDE / Tooling ---
+.DS_Store
+Thumbs.db
+.vscode/
+.idea/
+*.swp
+
+# --- Test / Coverage ---
+coverage/
+.nyc_output/
+jest.cache/
+*.tsbuildinfo
+
+# --- Temporary / Cache ---
+.cache/
+**/.cache/
+.tmp/
+temp/
+**/__pycache__/
+
+# --- Turborepo / Nx ---
+.turbo/
+.cache/
+nx-cache/
+nx-out/
+
+# --- TypeScript ---
+*.tsbuildinfo
+*.tgz
+
+# --- Misc ---
+*.pem
+*.key
+*.crt
+*.pid
+*.seed
