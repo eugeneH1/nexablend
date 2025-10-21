@@ -7,25 +7,258 @@ datasource db {
   url      = env("DATABASE_URL")
 }
 
+// ---- Enums
+enum Role {
+  OWNER
+  ADMIN
+  STAFF
+  CASHIER
+}
+
+enum EntitlementStatus {
+  ACTIVE
+  PAUSED
+  PAST_DUE
+  CANCELLED
+  EXPIRED
+}
+
+enum SubscriptionStatus {
+  TRIALING
+  ACTIVE
+  PAST_DUE
+  CANCELLED
+  INCOMPLETE
+}
+
+enum BillingProvider {
+  NONE
+  STRIPE
+  PAYFAST
+}
+
+enum OrderStatus {
+  OPEN
+  COMPLETED
+  CANCELLED
+}
+
+enum PaymentStatus {
+  UNPAID
+  PAID
+  REFUNDED
+  PARTIAL
+}
+
 model Tenant {
   id        String        @id @default(cuid())
   slug      String        @unique
   name      String
   createdAt DateTime      @default(now())
-  modules   TenantModule[]
-  users     User[]
+  updatedAt DateTime      @updatedAt
+
+  // relationships
+  memberships Membership[]
+  entitlements TenantEntitlement[]
+  subscriptions Subscription[]
+
+  // optional: multi-site support later
+  // locations Location[]
 }
 
-model TenantModule {
+model Membership {
+  id         String   @id @default(cuid())
+  userId     String   // from auth provider's users table
+  user       User     @relation(fields: [userId], references: [id], onDelete: Cascade)
+  tenantId   String
+  role       Role
+  isPrimary  Boolean  @default(false)
+  createdAt  DateTime @default(now())
+  updatedAt  DateTime @updatedAt
+
+  tenant     Tenant   @relation(fields: [tenantId], references: [id], onDelete: Cascade)
+
+  @@unique([userId, tenantId])
+  @@index([userId])
+  @@index([tenantId])
+}
+
+// =====================
+// Module Catalog & Entitlements
+// =====================
+
+// A global catalog of all “features/modules” your platform offers
+model Module {
+  id          String   @id @default(cuid())
+  key         String   @unique      // 'core' | 'bookings' | 'pos' | 'finance' ...
+  name        String
+  category    String?               // 'Core', 'Operations', 'Payments', etc.
+  description String?
+  isCore      Boolean  @default(false)
+  createdAt   DateTime @default(now())
+  updatedAt   DateTime @updatedAt
+
+  entitlements TenantEntitlement[]
+}
+
+// A tenant’s activation of a module (the entitlement itself)
+model TenantEntitlement {
+  id          String            @id @default(cuid())
+  tenantId    String
+  moduleId    String
+  status      EntitlementStatus @default(ACTIVE)
+  // billing windows for access control & reporting
+  startsAt    DateTime?         // first enabled date (or trial start)
+  expiresAt   DateTime?         // for trials or term-based access
+  createdAt   DateTime          @default(now())
+  updatedAt   DateTime          @updatedAt
+
+  tenant      Tenant  @relation(fields: [tenantId], references: [id], onDelete: Cascade)
+  module      Module  @relation(fields: [moduleId], references: [id], onDelete: Restrict)
+
+  @@unique([tenantId, moduleId])
+  @@index([tenantId])
+  @@index([moduleId])
+}
+
+// =====================
+// Subscriptions & Plans (billing)
+// =====================
+model Plan {
+  id           String   @id @default(cuid())
+  key          String   @unique    // 'starter', 'pro', 'enterprise'
+  name         String
+  priceCents   Int
+  currency     String   @default("ZAR")
+
+  // optional: feature bundling (core + which modules are included)
+  includedModules Json  // store as string[] (or a JSON field if using PG JSONB)
+  createdAt    DateTime @default(now())
+  updatedAt    DateTime @updatedAt
+
+  subscriptions Subscription[]
+}
+
+model Subscription {
+  id              String            @id @default(cuid())
+  tenantId        String
+  planId          String?
+  status          SubscriptionStatus @default(ACTIVE)
+  provider        BillingProvider   @default(NONE)
+  providerRef     String?           // e.g. Stripe customer/sub ID or PayFast token
+  currentPeriodStart DateTime?
+  currentPeriodEnd   DateTime?
+  cancelAtPeriodEnd  Boolean        @default(false)
+  createdAt       DateTime          @default(now())
+  updatedAt       DateTime          @updatedAt
+
+  tenant          Tenant            @relation(fields: [tenantId], references: [id], onDelete: Cascade)
+  plan            Plan?             @relation(fields: [planId], references: [id], onDelete: SetNull)
+
+  @@index([tenantId])
+  @@index([status])
+}
+
+// =====================
+// Example domain models (scoped by tenant)
+// =====================
+model Customer {
   id        String   @id @default(cuid())
   tenantId  String
-  key       String   // 'bookings' | 'pos' | 'finance'
-  status    String   // 'ACTIVE' | 'PAST_DUE' | 'CANCELLED'
-  expiresAt DateTime?
+  name      String
+  phone     String?
+  email     String?
+  notes     String?
   createdAt DateTime @default(now())
-  tenant    Tenant   @relation(fields: [tenantId], references: [id])
+  updatedAt DateTime @updatedAt
 
-  @@unique([tenantId, key])
+  tenant    Tenant   @relation(fields: [tenantId], references: [id], onDelete: Cascade)
+  orders    Order[]
+
+  // Fast multi-tenant listing and recency queries
+  @@index([tenantId])
+  @@index([tenantId, createdAt])
+
+  // Per-tenant deduping (nulls allowed by Postgres, so you can have multiple nulls)
+  @@unique([tenantId, phone])
+  @@unique([tenantId, email])
+}
+
+model Product {
+  id        String   @id @default(cuid())
+  tenantId  String
+  name      String
+  sku       String?
+  price     Int      // store cents
+  vatRate   Int?     // basis points (e.g., 1500 = 15%)
+  durationMins Int?  // for services
+  active    Boolean  @default(true)
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+
+  tenant    Tenant   @relation(fields: [tenantId], references: [id], onDelete: Cascade)
+  orderItems OrderItem[]
+
+  // Fast lists & scoping
+  @@index([tenantId])
+  @@index([tenantId, createdAt])
+
+  // Choose ONE or both depending on how strict you want to be:
+  // Prevent same name in a single catalog (handy for small shops)
+  @@unique([tenantId, name])
+  // Prevent duplicate SKUs per tenant (great once you start scanning)
+  @@unique([tenantId, sku])
+}
+
+model Order {
+  id         String   @id @default(cuid())
+  tenantId   String
+  customerId String?
+  orderNo    Int
+  totalCents Int
+  status      OrderStatus   @default(OPEN) 
+  paymentStatus   PaymentStatus   @default(UNPAID)
+  createdAt  DateTime @default(now())
+  updatedAt  DateTime @updatedAt
+
+  tenant     Tenant    @relation(fields: [tenantId], references: [id], onDelete: Cascade)
+  customer   Customer? @relation(fields: [customerId], references: [id], onDelete: SetNull)
+  items      OrderItem[]
+
+  // Scope + recency
+  @@index([tenantId])
+  @@index([tenantId, createdAt])
+
+  // Filter tabs & dashboards (common in UIs)
+  @@index([tenantId, status])
+  @@index([tenantId, paymentStatus])
+
+  // Prevent duplicate human numbers within a tenant
+  @@unique([tenantId, orderNo])
+}
+
+// ─────────────────────────────────────────────────────────────
+// ORDER ITEM — index by order and tenant for quick loads
+// ─────────────────────────────────────────────────────────────
+model OrderItem {
+  id         String   @id @default(cuid())
+  orderId    String
+  tenantId   String
+  productId  String?
+  name       String            // snapshot product name
+  unitPrice  Int               // snapshot price in cents
+  quantity   Int      @default(1)
+  vatRate    Int?              // snapshot VAT for this line
+  createdAt  DateTime @default(now())
+  updatedAt  DateTime @updatedAt
+
+  order      Order    @relation(fields: [orderId], references: [id], onDelete: Cascade)
+  tenant     Tenant   @relation(fields: [tenantId], references: [id], onDelete: Cascade)
+  product    Product? @relation(fields: [productId], references: [id], onDelete: SetNull)
+
+  // Quick load by order; also allow tenant-scope queries (e.g., reports)
+  @@index([orderId])
+  @@index([tenantId])
 }
 
 // Better Auth Models
@@ -35,13 +268,14 @@ model User {
   email         String    @unique
   emailVerified Boolean   @default(false)
   image         String?
-  tenantId      String?   // Optional: link users to tenants
   createdAt     DateTime  @default(now())
   updatedAt     DateTime  @updatedAt
   
+  // Auth relations
   sessions Session[]
   accounts Account[]
-  tenant   Tenant?   @relation(fields: [tenantId], references: [id])
+
+  memberships   Membership[]    
 }
 
 model Session {

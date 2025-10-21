@@ -1,14 +1,17 @@
-import { PrismaClient } from "@prisma/client";
+// packages/db/src/index.ts
+import { PrismaClient } from '@prisma/client';
 
-declare global {
-  // eslint-disable-next-line no-var
-  var __nexablend_prisma__: PrismaClient | undefined;
-}
+// Prevent creating many clients in dev (Next.js HMR)
+const globalForPrisma = globalThis as unknown as { prisma?: PrismaClient };
 
-export const prisma: PrismaClient = global.__nexablend_prisma__ ?? new PrismaClient();
+export const db =
+  globalForPrisma.prisma ??
+  new PrismaClient({
+    log: process.env.NODE_ENV === 'development' ? ['query', 'error', 'warn'] : ['error'],
+  });
 
-if (process.env.NODE_ENV !== "production") {
-  global.__nexablend_prisma__ = prisma;
-}
+if (process.env.NODE_ENV !== 'production') globalForPrisma.prisma = db;
 
+// Re-export Prisma types & enums for convenience
+export * from '@prisma/client';
 
