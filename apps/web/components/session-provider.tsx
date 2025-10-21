@@ -1,6 +1,6 @@
 "use client"
 
-import { Navbar } from "../components/navbar"
+import { Navbar } from "@/components/navbar"
 
 export function SessionProvider({ children }: { children: React.ReactNode }) {
   return (

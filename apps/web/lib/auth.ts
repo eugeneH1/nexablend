@@ -1,8 +1,11 @@
 import { betterAuth } from "better-auth"
 import { prismaAdapter } from "better-auth/adapters/prisma"
-import { PrismaClient } from "@prisma/client"
+import { prisma } from "@nexablend/db"
 
-const prisma = new PrismaClient()
+// Load root .env for DATABASE_URL
+import path from "node:path"
+import dotenv from "dotenv"
+dotenv.config({ path: path.join(process.cwd(), "../../.env") })
 
 export const auth = betterAuth({
   database: prismaAdapter(prisma, {
@@ -10,7 +13,7 @@ export const auth = betterAuth({
   }),
   emailAndPassword: {
     enabled: true,
-    requireEmailVerification: true,
+    requireEmailVerification: false,
   },
   session: {
     expiresIn: 60 * 60 * 24 * 7, // 7 days
@@ -25,4 +28,4 @@ export const auth = betterAuth({
 })
 
 export type Session = typeof auth.$Infer.Session
-export type User = typeof auth.$Infer.User
+export type User = import("@prisma/client").User

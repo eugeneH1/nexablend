@@ -1,8 +1,8 @@
 "use client"
 
 import { getEntitlements } from "@nexablend/services";
-import { AuthGuard } from "../../components/auth/auth-guard";
-import { useSession } from "../../lib/auth-client";
+import { AuthGuard } from "@/components/auth/auth-guard";
+import { useSession } from "@/lib/auth-client";
 import { useEffect, useState } from "react";
 
 function BookingsContent() {

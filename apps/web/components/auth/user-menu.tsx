@@ -1,6 +1,6 @@
 "use client"
 
-import { signOut, useSession } from "../../lib/auth-client"
+import { signOut, useSession } from "@/lib/auth-client"
 import { useState } from "react"
 
 export function UserMenu() {

@@ -1,8 +1,8 @@
 "use client"
 
 import Link from "next/link"
-import { useSession } from "../lib/auth-client"
-import { UserMenu } from "./auth/user-menu"
+import { useSession } from "@/lib/auth-client"
+import { UserMenu } from "@/components/auth/user-menu"
 
 export function Navbar() {
   const { data: session } = useSession()

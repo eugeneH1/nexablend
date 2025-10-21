@@ -1,8 +1,8 @@
 "use client"
 
 import Link from "next/link";
-import { useSession } from "../lib/auth-client";
-import { LoginForm } from "../components/auth/login-form";
+import { useSession } from "@/lib/auth-client";
+import { LoginForm } from "@/components/auth/login-form";
 
 export default function Home() {
   const { data: session, isPending } = useSession();

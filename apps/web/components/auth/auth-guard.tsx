@@ -1,7 +1,7 @@
 "use client"
 
-import { useSession } from "../../lib/auth-client"
-import { LoginForm } from "./login-form"
+import { useSession } from "@/lib/auth-client"
+import { LoginForm } from "@/components/auth/login-form"
 
 interface AuthGuardProps {
   children: React.ReactNode
