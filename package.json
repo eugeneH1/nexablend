@@ -2,15 +2,15 @@
   "name": "nexablend",
   "private": true,
   "version": "0.0.0",
-  "packageManager": "pnpm@10.18.0",
+  "packageManager": "pnpm@10.19.0+sha512.c9fc7236e92adf5c8af42fd5bf1612df99c2ceb62f27047032f4720b33f8eacdde311865e91c411f2774f618d82f320808ecb51718bfa82c060c4ba7c76a32b8",
   "scripts": {
     "dev": "pnpm --filter web dev",
-    "build": "pnpm --filter web build", 
+    "build": "pnpm --filter web build",
     "start": "pnpm --filter web start",
     "lint": "pnpm --filter web lint",
     "typecheck": "pnpm --filter web tsc -p tsconfig.json --noEmit",
     "db:generate": "pnpm --filter @nexablend/db run prisma:generate",
-    "db:migrate": "pnpm --filter @nexablend/db run prisma:migrate", 
+    "db:migrate": "pnpm --filter @nexablend/db run prisma:migrate",
     "db:seed": "pnpm --filter @nexablend/db run seed"
   },
   "devDependencies": {
