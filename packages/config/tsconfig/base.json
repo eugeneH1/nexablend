@@ -1,13 +1,31 @@
 {
   "compilerOptions": {
+    // Modern TS for Next + Node
     "target": "ES2022",
     "lib": ["ES2022", "DOM"],
     "module": "ESNext",
     "moduleResolution": "Bundler",
+    "jsx": "react-jsx",
+
+    // Strictness & quality
     "strict": true,
+    "noEmit": true,
     "skipLibCheck": true,
+    "esModuleInterop": true,
+    "forceConsistentCasingInFileNames": true,
+
     "resolveJsonModule": true,
-    "noEmit": true
+
+    // Monorepo paths (shared across all packages/apps)
+    "baseUrl": ".",
+    "paths": {
+      "@nexablend/core": ["packages/core"],
+      "@nexablend/core/*": ["packages/core/*"],
+      "@nexablend/db": ["packages/db"],
+      "@nexablend/db/*": ["packages/db/*"],
+      "@nexablend/services": ["packages/services"],
+      "@nexablend/services/*": ["packages/services/*"]
+    }
   }
 }
 

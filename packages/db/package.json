@@ -13,13 +13,11 @@
     "@prisma/client": "^6.17.1"
   },
   "devDependencies": {
+    "@types/node": "^20.19.19",
     "dotenv-cli": "^7.4.2",
     "prisma": "^6.17.1",
     "tsx": "^4.19.2",
     "typescript": "^5.6.2"
-  },
-  "prisma": {
-    "schema": "prisma/schema.prisma"
   },
   "main": "dist/index.js",
   "types": "dist/index.d.ts",
@@ -35,4 +33,3 @@
     "prisma/schema.prisma"
   ]
 }
-

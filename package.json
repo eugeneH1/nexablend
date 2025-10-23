@@ -14,10 +14,14 @@
     "db:seed": "pnpm --filter @nexablend/db run seed"
   },
   "devDependencies": {
+    "prettier": "^3.6.2",
     "prisma": "^6.17.1",
     "tsx": "^4.20.6"
   },
   "pnpm": {
-    "packageManager": "pnpm@10.18.0"
+    "overrides": {
+      "@types/react": "19.2.2",
+      "@types/react-dom": "19.2.2"
+    }
   }
 }

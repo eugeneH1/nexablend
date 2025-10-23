@@ -1,14 +1,27 @@
-import type { ModuleKey } from "./entitlements";
+import { db, Role } from '@nexablend/db';
 
-export function requireModule<TCtx extends { entitlements: Set<ModuleKey> }>(
-  m: ModuleKey,
-  fn: (ctx: TCtx) => Promise<Response>
-) {
-  return async (ctx: TCtx) => {
-    if (!ctx.entitlements.has(m)) {
-      return new Response("Forbidden", { status: 403 });
-    }
-    return fn(ctx);
-  };
+const roleOrder = [Role.CASHIER, Role.STAFF, Role.ADMIN, Role.OWNER];
+
+export function hasAtLeast(userRole: Role | null | undefined, min: Role) {
+  if (!userRole) return false;
+  return roleOrder.indexOf(userRole) >= roleOrder.indexOf(min);
+}
+
+export async function getActiveMembership(userId: string) {
+  return db.membership.findFirst({
+    where: { userId, isPrimary: true },
+    include: { tenant: true },
+  });
+}
+
+export async function requireEntitlement(tenantId: string, moduleKey: string) {
+  const entitlement = await db.tenantEntitlement.findFirst({
+    where: {
+      tenantId,
+      module: { key: moduleKey },
+      status: 'ACTIVE',
+    },
+  });
+  return Boolean(entitlement);
 }
 
