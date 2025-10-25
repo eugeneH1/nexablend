@@ -1,7 +1,15 @@
 // packages/db/src/index.ts
-import { PrismaClient } from '@prisma/client';
+import {
+  PrismaClient,
+  Role,
+  EntitlementStatus,
+  SubscriptionStatus,
+  BillingProvider,
+  OrderStatus,
+  PaymentStatus,
+} from '@prisma/client';
 
-// Prevent creating many clients in dev (Next.js HMR)
+// singleton client
 const globalForPrisma = globalThis as unknown as { prisma?: PrismaClient };
 
 export const db =
@@ -12,6 +20,7 @@ export const db =
 
 if (process.env.NODE_ENV !== 'production') globalForPrisma.prisma = db;
 
-// Re-export Prisma types & enums for convenience
-export * from '@prisma/client';
+export { Role, EntitlementStatus, SubscriptionStatus, BillingProvider, OrderStatus, PaymentStatus };
+
+export type { Prisma } from '@prisma/client';
 
