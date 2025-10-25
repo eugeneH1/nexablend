@@ -1,6 +1,6 @@
 import { betterAuth } from "better-auth"
 import { prismaAdapter } from "better-auth/adapters/prisma"
-import { prisma } from "@nexablend/db"
+import { db } from "@nexablend/db"
 
 // Load root .env for DATABASE_URL
 import path from "node:path"
@@ -8,7 +8,7 @@ import dotenv from "dotenv"
 dotenv.config({ path: path.join(process.cwd(), "../../.env") })
 
 export const auth = betterAuth({
-  database: prismaAdapter(prisma, {
+  database: prismaAdapter(db, {
     provider: "postgresql",
   }),
   emailAndPassword: {
