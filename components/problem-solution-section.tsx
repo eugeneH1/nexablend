@@ -78,10 +78,13 @@ export function ProblemSolutionSection() {
             The Problem Every Business Faces
           </div>
           <h2 className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl font-bold text-white text-balance mb-4 sm:mb-6">
-            <span className="text-red-400">60-70%</span> of Your Leads Are Slipping Away
+            <span className="text-red-400">60-70%</span> of Your Sales Are Slipping Away
           </h2>
           <p className="text-base sm:text-lg md:text-xl text-white/70 max-w-3xl mx-auto font-light leading-relaxed">
-            While you're busy serving customers, your online inquiries are going unanswered. Here's how we fix it.
+          You’re working 12-hour days, but your bank account isn’t reflecting that effort. While you’re on the floor serving customers or in the workshop getting stuck into the real work, your business is leaking.
+
+Inquiries go unanswered, stock is ordered on 'gut feel' instead of stats, and customer details are scattered across messy spreadsheets and old calendars. 
+These aren't just small annoyances—they are the holes in your business where your profit is draining out. We don't give you more work to do; we provide the plug for those leaks, turning your daily grind into a streamlined, money-making machine.
           </p>
         </div>
 
@@ -105,7 +108,7 @@ export function ProblemSolutionSection() {
               <div className="bg-red-500/10 backdrop-blur-sm border border-red-500/20 rounded-xl p-4 sm:p-6 mb-6">
                 <div className="text-3xl sm:text-4xl font-bold text-red-400 mb-2">4+ Hours</div>
                 <p className="text-white/80 text-sm sm:text-base">
-                  Average response time, but 78% of customers choose the first business to respond
+                The time you spend manually juggling paperwork, checking shelves, and playing catch-up.
                 </p>
               </div>
 
@@ -114,18 +117,26 @@ export function ProblemSolutionSection() {
                 <div className="flex items-start gap-3">
                   <div className="w-2 h-2 bg-red-400 rounded-full mt-2 flex-shrink-0"></div>
                   <p className="text-white/70 text-sm sm:text-base">
-                    Staff miss inquiries during off-hours and weekends
+                  You’re too busy on the floor to answer the phone—and by the time you do, they’ve already called your competitor.
                   </p>
                 </div>
                 <div className="flex items-start gap-3">
                   <div className="w-2 h-2 bg-red-400 rounded-full mt-2 flex-shrink-0"></div>
                   <p className="text-white/70 text-sm sm:text-base">
-                    Busy serving customers while online leads go cold
+                  You're guessing your orders, leaving you out of best-sellers while your cash rots on the shelf in dead stock.
                   </p>
                 </div>
                 <div className="flex items-start gap-3">
                   <div className="w-2 h-2 bg-red-400 rounded-full mt-2 flex-shrink-0"></div>
-                  <p className="text-white/70 text-sm sm:text-base">Marketing spend wasted on unresponded inquiries</p>
+                  <p className="text-white/70 text-sm sm:text-base">
+                    You spend your Sunday counting boxes just to figure out what you sold or what was stolen.
+                  </p>
+                </div>
+                <div className="flex items-start gap-3">
+                  <div className="w-2 h-2 bg-red-400 rounded-full mt-2 flex-shrink-0"></div>
+                  <p className="text-white/70 text-sm sm:text-base">
+                    Your best customers feel like strangers because their history is buried in a pile of old invoices.
+                  </p>
                 </div>
               </div>
             </div>
@@ -145,7 +156,7 @@ export function ProblemSolutionSection() {
               <div className="bg-green-500/10 backdrop-blur-sm border border-green-500/20 rounded-xl p-4 sm:p-6 mb-6">
                 <div className="text-3xl sm:text-4xl font-bold text-green-400 mb-2">24/7</div>
                 <p className="text-white/80 text-sm sm:text-base">
-                  AI assistant responds within seconds, books appointments while you sleep
+                  Your business on autopilot
                 </p>
               </div>
 
@@ -153,15 +164,39 @@ export function ProblemSolutionSection() {
               <div className="space-y-4">
                 <div className="flex items-start gap-3">
                   <CheckCircle />
-                  <p className="text-white/70 text-sm sm:text-base">Instantly qualifies leads and books appointments</p>
+                  <p className="text-white/70 text-sm sm:text-base">
+                    Instantly qualifies leads and books appointments
+                  </p>
                 </div>
                 <div className="flex items-start gap-3">
                   <CheckCircle />
-                  <p className="text-white/70 text-sm sm:text-base">Integrates with your CRM and calendar system</p>
+                  <p className="text-white/70 text-sm sm:text-base">
+                    Integrates with your CRM and calendar system
+                  </p>
                 </div>
                 <div className="flex items-start gap-3">
                   <CheckCircle />
-                  <p className="text-white/70 text-sm sm:text-base">Works across website, WhatsApp, email, and phone</p>
+                  <p className="text-white/70 text-sm sm:text-base">
+                    Every sale is tracked instantly.
+                  </p>
+                </div>
+                <div className="flex items-start gap-3">
+                  <CheckCircle />
+                  <p className="text-white/70 text-sm sm:text-base">
+                    One tap to see customer history
+                  </p>
+                </div>
+                <div className="flex items-start gap-3">
+                  <CheckCircle />
+                  <p className="text-white/70 text-sm sm:text-base">
+                    Spot trends and adjust your sales strategy
+                  </p>
+                </div>
+                <div className="flex items-start gap-3">
+                  <CheckCircle />
+                  <p className="text-white/70 text-sm sm:text-base">
+                    Works across website, WhatsApp, email, and phone
+                  </p>
                 </div>
               </div>
             </div>
@@ -175,16 +210,16 @@ export function ProblemSolutionSection() {
           }`}
         >
           <div className="text-center bg-white/5 backdrop-blur-md border border-white/10 rounded-xl p-4 sm:p-6 hover:bg-white/10 transition-all duration-300">
-            <div className="text-2xl sm:text-3xl font-bold text-white mb-2">€500+</div>
+            <div className="text-2xl sm:text-3xl font-bold text-white mb-2">R500+</div>
             <p className="text-white/70 text-xs sm:text-sm">Average value per lost lead</p>
           </div>
           <div className="text-center bg-white/5 backdrop-blur-md border border-white/10 rounded-xl p-4 sm:p-6 hover:bg-white/10 transition-all duration-300">
             <div className="text-2xl sm:text-3xl font-bold text-white mb-2">78%</div>
-            <p className="text-white/70 text-xs sm:text-sm">Choose first responder</p>
+            <p className="text-white/70 text-xs sm:text-sm">Choose our software</p>
           </div>
           <div className="text-center bg-white/5 backdrop-blur-md border border-white/10 rounded-xl p-4 sm:p-6 hover:bg-white/10 transition-all duration-300">
             <div className="text-2xl sm:text-3xl font-bold text-white mb-2">24/7</div>
-            <p className="text-white/70 text-xs sm:text-sm">Our AI never sleeps</p>
+            <p className="text-white/70 text-xs sm:text-sm">Your business on autopilot</p>
           </div>
         </div>
 
