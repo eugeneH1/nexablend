@@ -198,7 +198,7 @@ export function AITeamSection() {
               }`}
             >
               <MessageCircle className="w-4 h-4" />
-              AI Car Sales Assistant Demo
+              Service Provider Demo
             </div>
 
             <h2
@@ -206,9 +206,9 @@ export function AITeamSection() {
                 isVisible ? "opacity-100 translate-y-0" : "opacity-0 translate-y-8"
               }`}
             >
-              See AI Handle{" "}
+              Stop Trading Your Time{" "}
               <span className="bg-gradient-to-r from-slate-600 to-slate-400 bg-clip-text text-transparent">
-                Real Car Sales
+                For Admin
               </span>
             </h2>
 
@@ -217,7 +217,7 @@ export function AITeamSection() {
                 isVisible ? "opacity-100 translate-y-0" : "opacity-0 translate-y-8"
               }`}
             >
-              Watch how our AI handles car inquiries, books test drives, and provides 24/7 automotive support.
+              Give your clients a way to book and pay online.
             </p>
           </div>
 
