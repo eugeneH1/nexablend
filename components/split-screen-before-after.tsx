@@ -74,7 +74,7 @@ export function SplitScreenBeforeAfter() {
     }
   }, [])
 
-  const getParallaxOffset = (sectionRef: React.RefObject<HTMLDivElement>) => {
+  const getParallaxOffset = (sectionRef: React.RefObject<HTMLDivElement | null>) => {
     if (!sectionRef.current || typeof window === "undefined" || window.innerWidth < 1024) {
       return 0
     }
