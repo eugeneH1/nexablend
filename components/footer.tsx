@@ -1,7 +1,7 @@
 "use client"
 import type React from "react"
 import type { ComponentProps, ReactNode } from "react"
-import { motion, useReducedMotion } from "framer-motion"
+import { motion, useReducedMotion } from "motion/react"
 import { FacebookIcon, InstagramIcon, LinkedinIcon, YoutubeIcon } from "lucide-react"
 import Image from "next/image"
 
