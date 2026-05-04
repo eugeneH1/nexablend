@@ -1,6 +1,7 @@
 "use client"
 
 import { useEffect, useRef, useState } from "react"
+import { formatZAR } from "@/lib/format"
 
 export function AiTeamDealershipSection() {
   const sectionRef = useRef<HTMLElement>(null)
@@ -328,7 +329,7 @@ export function AiTeamDealershipSection() {
                       </div>
                       <p className="text-sm font-bold text-slate-900 mb-1">Brake Pads</p>
                       <p className="text-xs text-slate-500 mb-2">BMW X5 • Stock: 8</p>
-                      <p className="text-lg font-bold text-slate-900">€89</p>
+                      <p className="text-lg font-bold text-slate-900">{formatZAR(1800)}</p>
                     </div>
 
                     <div className="bg-white rounded-xl p-4 border border-slate-200/60 shadow-sm">
@@ -349,7 +350,7 @@ export function AiTeamDealershipSection() {
                       </div>
                       <p className="text-sm font-bold text-slate-900 mb-1">Oil Filter</p>
                       <p className="text-xs text-slate-500 mb-2">Universal • Stock: 24</p>
-                      <p className="text-lg font-bold text-slate-900">€24</p>
+                      <p className="text-lg font-bold text-slate-900">{formatZAR(480)}</p>
                     </div>
 
                     <div className="bg-gradient-to-br from-green-50 to-emerald-50 rounded-xl p-4 border-2 border-green-200 shadow-md animate-scale-in">

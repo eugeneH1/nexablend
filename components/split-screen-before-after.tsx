@@ -387,7 +387,7 @@ export function SplitScreenBeforeAfter() {
                         <div className="mb-2 lg:mb-3 flex justify-end">
                           <div className="bg-[#005c4b] rounded-lg rounded-tr-none p-2 inline-block max-w-[85%]">
                             <p className="text-white text-[9px] sm:text-[10px] lg:text-sm leading-snug">
-                              Perfect! I've booked you for 2pm tomorrow. The BMW X5 is €45,900. 2023 model, 15,000km.
+                              Perfect! I've booked you for 2pm tomorrow. The BMW X5 is R920,000. 2023 model, 15,000km.
                               Financing options?
                             </p>
                             <p className="text-slate-300 text-[8px] lg:text-xs mt-0.5 text-right">19:02</p>
@@ -630,7 +630,7 @@ export function SplitScreenBeforeAfter() {
                             <div className="bg-slate-900/50 rounded-lg p-2 border-l-2 border-orange-500">
                               <div className="text-orange-400 font-semibold mb-0.5">Cliste</div>
                               <div className="text-slate-300 leading-relaxed">
-                                "The Audi A4 is priced at €32,500. It's a 2023 model with 12,000km. Would you like to
+                                "The Audi A4 is priced at R650,000. It's a 2023 model with 12,000km. Would you like to
                                 discuss financing options?"
                               </div>
                             </div>
@@ -661,7 +661,7 @@ export function SplitScreenBeforeAfter() {
                               <div className="text-slate-300">Ready to buy</div>
                             </div>
                             <div className="bg-slate-900/40 rounded-lg p-1.5 border border-orange-500/20">
-                              <div className="text-orange-300 font-semibold">€30-35k</div>
+                              <div className="text-orange-300 font-semibold">R600k–700k</div>
                               <div className="text-slate-300">Budget range</div>
                             </div>
                             <div className="bg-slate-900/40 rounded-lg p-1.5 border border-orange-500/20 col-span-2">
@@ -931,7 +931,7 @@ export function SplitScreenBeforeAfter() {
                               <div className="bg-gradient-to-r from-orange-500 to-red-500 rounded-2xl rounded-tr-none px-4 py-3 shadow-sm max-w-[85%]">
                                 <p className="text-white text-sm">
                                   Yes! We have brake pads in stock. I can book you in for Thursday at 2 PM and include
-                                  the brake pad replacement. Total: €180
+                                  the brake pad replacement. Total: R3,600
                                 </p>
                               </div>
                               <span className="text-xs text-slate-400 mt-1">10:16 AM</span>

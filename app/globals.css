@@ -852,7 +852,7 @@
   animation-delay: 600ms;
 }
 
-/* Adding circle drawing animation for €200K+ stats */
+/* Adding circle drawing animation for R4M+ stats */
 @keyframes drawCircle {
   0% {
     stroke-dashoffset: 600;

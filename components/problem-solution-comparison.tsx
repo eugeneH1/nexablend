@@ -83,7 +83,7 @@ export function ProblemSolutionComparison() {
         <h2 className="text-4xl sm:text-5xl md:text-6xl lg:text-7xl font-bold text-white mb-4">
           Stop Losing{" "}
           <span className="bg-gradient-to-r from-red-400 via-orange-400 to-red-500 bg-clip-text text-transparent">
-            €200K+
+            R4M+
           </span>{" "}
           Annually
         </h2>
@@ -149,7 +149,7 @@ export function ProblemSolutionComparison() {
                     <td className="py-10 px-12">
                       <div className="relative inline-block">
                         <div className="text-2xl sm:text-3xl font-bold bg-gradient-to-r from-red-500 to-red-600 bg-clip-text text-transparent">
-                          €200K+ Lost
+                          R4M+ Lost
                         </div>
                         {showCircle && (
                           <svg
@@ -188,7 +188,7 @@ export function ProblemSolutionComparison() {
                     <td className="py-10 px-12">
                       <div className="relative inline-block">
                         <div className="text-2xl sm:text-3xl font-bold bg-gradient-to-r from-green-500 to-emerald-500 bg-clip-text text-transparent">
-                          €200K+ Saved
+                          R4M+ Saved
                         </div>
                         {showCircle && (
                           <svg
@@ -270,7 +270,7 @@ export function ProblemSolutionComparison() {
                 <div className="p-4 py-8 bg-red-50/50 flex items-center justify-center">
                   <div className="relative inline-block">
                     <div className="text-lg font-bold bg-gradient-to-r from-red-500 to-red-600 bg-clip-text text-transparent whitespace-nowrap">
-                      €200K+ Lost
+                      R4M+ Lost
                     </div>
                     {showCircle && (
                       <svg
@@ -309,7 +309,7 @@ export function ProblemSolutionComparison() {
                 <div className="p-4 py-8 bg-green-50/50 flex items-center justify-center">
                   <div className="relative inline-block">
                     <div className="text-lg font-bold bg-gradient-to-r from-green-500 to-emerald-500 bg-clip-text text-transparent whitespace-nowrap">
-                      €200K+ Saved
+                      R4M+ Saved
                     </div>
                     {showCircle && (
                       <svg

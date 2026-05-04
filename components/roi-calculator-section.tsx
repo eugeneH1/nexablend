@@ -5,6 +5,7 @@ import { Slider } from "@/components/ui/slider"
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select"
 import { Card } from "@/components/ui/card"
 import { TrendingUp, Users, DollarSign, Clock } from "lucide-react"
+import { formatNumber, formatZAR } from "@/lib/format"
 
 interface CalculatorInputs {
   monthlyVisitors: number
@@ -17,7 +18,7 @@ export function ROICalculatorSection() {
   const [inputs, setInputs] = useState<CalculatorInputs>({
     monthlyVisitors: 10000,
     currentConversionRate: 2,
-    averageOrderValue: 150,
+    averageOrderValue: 1700,
     businessType: "ecommerce",
   })
 
@@ -45,14 +46,14 @@ export function ROICalculatorSection() {
 
   const getBusinessDefaults = () => {
     const businessDefaults = {
-      ecommerce: { avgOrder: 85, maxOrder: 500, conversion: 35, response: 80, satisfaction: 45 },
-      retail: { avgOrder: 65, maxOrder: 300, conversion: 30, response: 75, satisfaction: 40 },
-      realestate: { avgOrder: 5000, maxOrder: 50000, conversion: 40, response: 85, satisfaction: 50 },
-      hospitality: { avgOrder: 180, maxOrder: 1000, conversion: 25, response: 70, satisfaction: 35 },
-      healthcare: { avgOrder: 250, maxOrder: 2000, conversion: 45, response: 90, satisfaction: 55 },
-      finance: { avgOrder: 1200, maxOrder: 10000, conversion: 35, response: 85, satisfaction: 50 },
-      automotive: { avgOrder: 25000, maxOrder: 100000, conversion: 30, response: 75, satisfaction: 40 },
-      default: { avgOrder: 150, maxOrder: 2000, conversion: 35, response: 80, satisfaction: 45 },
+      ecommerce: { avgOrder: 1700, maxOrder: 10000, conversion: 35, response: 80, satisfaction: 45 },
+      retail: { avgOrder: 1300, maxOrder: 6000, conversion: 30, response: 75, satisfaction: 40 },
+      realestate: { avgOrder: 100000, maxOrder: 1000000, conversion: 40, response: 85, satisfaction: 50 },
+      hospitality: { avgOrder: 3600, maxOrder: 20000, conversion: 25, response: 70, satisfaction: 35 },
+      healthcare: { avgOrder: 5000, maxOrder: 40000, conversion: 45, response: 90, satisfaction: 55 },
+      finance: { avgOrder: 24000, maxOrder: 200000, conversion: 35, response: 85, satisfaction: 50 },
+      automotive: { avgOrder: 500000, maxOrder: 2000000, conversion: 30, response: 75, satisfaction: 40 },
+      default: { avgOrder: 3000, maxOrder: 40000, conversion: 35, response: 80, satisfaction: 45 },
     }
 
     return businessDefaults[inputs.businessType as keyof typeof businessDefaults] || businessDefaults.default
@@ -143,7 +144,7 @@ export function ROICalculatorSection() {
                 <div>
                   <label className="block text-sm font-medium text-gray-300 mb-3">
                     Monthly Website Visitors:{" "}
-                    <span className="text-white font-semibold">{inputs.monthlyVisitors.toLocaleString()}</span>
+                    <span className="text-white font-semibold">{formatNumber(inputs.monthlyVisitors)}</span>
                   </label>
                   <Slider
                     value={[inputs.monthlyVisitors]}
@@ -183,19 +184,19 @@ export function ROICalculatorSection() {
                 <div>
                   <label className="block text-sm font-medium text-gray-300 mb-3">
                     Average Order Value:{" "}
-                    <span className="text-white font-semibold">€{inputs.averageOrderValue.toLocaleString()}</span>
+                    <span className="text-white font-semibold">{formatZAR(inputs.averageOrderValue)}</span>
                   </label>
                   <Slider
                     value={[inputs.averageOrderValue]}
                     onValueChange={([value]) => setInputs((prev) => ({ ...prev, averageOrderValue: value }))}
                     max={businessConfig.maxOrder}
-                    min={25}
-                    step={inputs.businessType === "automotive" || inputs.businessType === "realestate" ? 1000 : 25}
+                    min={500}
+                    step={inputs.businessType === "automotive" || inputs.businessType === "realestate" ? 20000 : 500}
                     className="w-full"
                   />
                   <div className="flex justify-between text-xs text-gray-400 mt-1">
-                    <span>€25</span>
-                    <span>€{businessConfig.maxOrder.toLocaleString()}</span>
+                    <span>{formatZAR(500)}</span>
+                    <span>{formatZAR(businessConfig.maxOrder)}</span>
                   </div>
                 </div>
 
@@ -293,9 +294,7 @@ export function ROICalculatorSection() {
                       <DollarSign className="w-4 h-4 md:w-5 md:h-5 text-gray-300" />
                       <span className="text-sm md:text-base text-white">Additional Revenue</span>
                     </div>
-                    <span className="text-lg md:text-xl font-bold text-white">
-                      €{additionalRevenue.toLocaleString()}
-                    </span>
+                    <span className="text-lg md:text-xl font-bold text-white">{formatZAR(additionalRevenue)}</span>
                   </div>
 
                   <div className="flex items-center justify-between p-3 md:p-4 rounded-lg bg-white/5 border border-white/10">
@@ -320,7 +319,7 @@ export function ROICalculatorSection() {
                   <div className="text-center">
                     <div className="text-xs md:text-sm text-gray-300 mb-2">Projected Annual Revenue Increase</div>
                     <div className="text-2xl md:text-3xl lg:text-4xl font-bold text-white mb-2">
-                      €{(additionalRevenue * 12).toLocaleString()}
+                      {formatZAR(additionalRevenue * 12)}
                     </div>
                     <div className="text-xs md:text-sm text-gray-400">
                       Based on your current metrics and industry benchmarks

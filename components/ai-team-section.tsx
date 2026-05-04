@@ -19,7 +19,7 @@ const conversations = [
         delay: 2500,
       },
       {
-        text: "Great choice! The Premium Plus starts at €42,500. We have both black and white available. Would you like to schedule a test drive to experience it yourself?",
+        text: "Great choice! The Premium Plus starts at R850,000. We have both black and white available. Would you like to schedule a test drive to experience it yourself?",
         sender: "ai",
         delay: 3500,
       },
@@ -52,7 +52,7 @@ const conversations = [
         delay: 2500,
       },
       {
-        text: "We have excellent financing available! Current rates start at 2.9% APR for qualified buyers, and we also offer lease options starting at €379/month.",
+        text: "We have excellent financing available! Rates from prime for qualified buyers, and lease options from around R7,500/month.",
         sender: "ai",
         delay: 4000,
       },
