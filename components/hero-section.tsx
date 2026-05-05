@@ -70,7 +70,7 @@ export function HeroSection() {
             size="lg"
             className="bg-white text-black rounded-full px-8 py-4 text-lg font-medium transition-all duration-300 hover:bg-gray-50 hover:scale-105 hover:shadow-lg group cursor-pointer relative overflow-hidden"
           >
-            Start Growing
+            Join Waitinglist
             <ArrowRight />
           </Button>
 
@@ -80,7 +80,7 @@ export function HeroSection() {
             className="rounded-full px-8 py-4 text-lg font-medium border-border hover:bg-accent transition-all duration-200 hover:scale-105 group bg-transparent cursor-pointer"
           >
             <Play />
-            Book Demo
+            Coming Soon...
           </Button>
         </div>
 

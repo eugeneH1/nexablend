@@ -62,9 +62,9 @@ export function Footer() {
 
       <div className="grid w-full gap-8 xl:grid-cols-3 xl:gap-8">
         <AnimatedContainer className="space-y-4">
-          <Image src="/images/cliste-logo.png" alt="Cliste Logo" width={64} height={64} className="size-16" />
+          <Image src="/LogoWhite.svg" alt="Nexablend Digital" width={320} height={64} className="h-16 w-auto" />
           <div className="text-muted-foreground mt-8 text-sm md:mt-0 md:block hidden">
-            <p>© {new Date().getFullYear()} Cliste. All rights reserved.</p>
+            <p>© {new Date().getFullYear()} Nexablend Digital. All rights reserved.</p>
           </div>
         </AnimatedContainer>
 
@@ -93,12 +93,12 @@ export function Footer() {
       </div>
 
       <div className="md:hidden mt-8 text-center space-y-2">
-        <p className="text-muted-foreground text-sm">© {new Date().getFullYear()} Cliste. All rights reserved.</p>
-        <p className="text-muted-foreground text-xs">Web Development by Humexa</p>
+        <p className="text-muted-foreground text-sm">© {new Date().getFullYear()} Nexablend Digital. All rights reserved.</p>
+        <p className="text-muted-foreground text-xs">Web Development by Eugene Heynike</p>
       </div>
 
       <div className="hidden md:block mt-8 pt-6 border-t border-foreground/10 w-full">
-        <p className="text-muted-foreground text-xs text-center">Web Development by Humexa</p>
+        <p className="text-muted-foreground text-xs text-center">Web Development by Eugene Heynike</p>
       </div>
     </footer>
   )
